@@ -1,0 +1,8 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=753
+
+I couldn't find any syntax file for TTCN-3, so I made my own. The file is based on ETSI document no. ES 201 873-1 (V2.2.1 2003-02).
+
+For information about TTCN-3, see http://www.etsi.org.
+
+Folds: If the variable "g:ttcn_fold" is defined (e.g. by ":let g:ttcn_fold = 1" in your .vimrc file), folds will automatically be defined for each {...} block.
+

@@ -2,15 +2,13 @@
 "
 " Language:     TTCN-3
 " Maintainer:   Stefan Karlsson <stefan.74@comhem.se>
-" Last Change:  18 September 2004
+" Last Change:  10 August 2005
 "
-" This file is based on the ETSI standard ES201873-1 v2.2.1. Please let
-" me know of any bugs or other problems you run across.
+" This file is based on the ETSI standard ES201873-1 v2.2.1. Please let me know
+" of any bugs or other problems you run across.
 
 
-if version < 600
-  syn clear
-elseif exists("b:current_syntax")
+if exists("b:current_syntax")
   finish
 endif
 
@@ -21,7 +19,7 @@ else
 endif
 
 " Automatically define folds. You enable this feature with :let ttcn_fold=1. 
-if version >= 600 && exists("g:ttcn_fold") && g:ttcn_fold == 1
+if exists("g:ttcn_fold") && g:ttcn_fold == 1
   syn region ttcnFold start="{" end="}" transparent fold
 endif
 
@@ -113,8 +111,13 @@ syn match   ttcnString  /'\x\+'H/
 syn match   ttcnString  /'\(\x\x\)\+'O/
 
 " Comments 
-syn match   ttcnCmnt    "//.*" contains=ttcnTodo
-syn region  ttcnCmnt    start="/\*" end="\*/" contains=ttcnTodo
+if version < 700 
+  syn match   ttcnCmnt    "//.*" contains=ttcnTodo
+  syn region  ttcnCmnt    start="/\*" end="\*/" contains=ttcnTodo
+else
+  syn match   ttcnCmnt    "//.*" contains=ttcnTodo,@Spell
+  syn region  ttcnCmnt    start="/\*" end="\*/" contains=ttcnTodo,@Spell
+endif
 
 syn case ignore
 syn keyword ttcnTodo    xxx todo fixme contained
